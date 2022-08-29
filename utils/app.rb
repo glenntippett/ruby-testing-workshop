@@ -70,6 +70,5 @@ end
 
 # Accepts an array of restaurant hashes with reviews and returns an array of restaurant names if rating is higher than 5/10
 def good_reviews(reviews)
-  # returns array of restaurant names if rating is greater than 5
   reviews.select { |review| review[:rating] > 5 }.map { |review| review[:restaurant] }
 end
