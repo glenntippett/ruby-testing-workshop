@@ -27,28 +27,25 @@ end
 
 # Method to check if current day is weekend
 def weekend?
-  [0, 6].include? Time.now.wday
+  today = Time.now.strftime('%A')
+  %w[Saturday Sunday].include?(today)
 end
 
 # Method to check if current day is weekday
 def weekday?
-  !weekend?
-end
-
-# Method to check if current year is leap year
-def leap_year?
-  year = Time.now.year
-  ((year % 4).zero? && year % 100 != 0) || (year % 400).zero?
+  # !weekend?
+  today = Time.now.strftime('%A')
+  %w[Monday Tuesday Wednesday Thursday Friday].include?(today)
 end
 
 # Method to check if string is a valid email
 def email?(string)
-  string =~ /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
+  string.match?(/\A[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i)
 end
 
 # Returns number of calories burned for given weight and time
 def calories_burned(weight, time)
-  (weight * 0.0175) * time
+  (weight * 0.0175 * time).round
 end
 
 # Returns number of capital letters in a string
@@ -71,7 +68,8 @@ def delete_age(user)
   user.tap { |hash| hash.delete(:age) }
 end
 
-# Accepts a hash of restaurant reviews and returns an array of restaurant names if rating is higher than 5/10
+# Accepts an array of restaurant hashes with reviews and returns an array of restaurant names if rating is higher than 5/10
 def good_reviews(reviews)
-  reviews.select { |_name, rating| rating > 5 }.keys
+  # returns array of restaurant names if rating is greater than 5
+  reviews.select { |review| review[:rating] > 5 }.map { |review| review[:restaurant] }
 end
