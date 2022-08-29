@@ -33,7 +33,6 @@ end
 
 # Method to check if current day is weekday
 def weekday?
-  # !weekend?
   today = Time.now.strftime('%A')
   %w[Monday Tuesday Wednesday Thursday Friday].include?(today)
 end
