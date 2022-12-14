@@ -27,7 +27,7 @@ This creates a new `Gemfile` to install packages
 3. Install Rspec
    \
    (You may have it installed globally but the person testing may not)\
-   Open the Gemfile add add `rspec`
+   Open the Gemfile and add `rspec`
 
 ```ruby
 gem 'rspec'
